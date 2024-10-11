@@ -29,15 +29,21 @@ const newSchema = new mongoose.Schema({
 
   let News = mongoose.model("newsUploader", newSchema);
 
-app.post("/formpost", async (req, res) => {
-  let news = new News();
-  news.name = await req.body.title
-  news.description = await req.body.description
-  news.imageurl = await req.body.imageUrl
-  news.date = await req.body.date
-  await news.save();
-  res.json({message:"Success"})
-});
+  app.post("/formpost", async (req, res) => {
+    let news = new News();
+    news.name = await req.body.title
+    news.description = await req.body.description
+    news.imageurl = await req.body.imageUrl
+    news.date = await req.body.date
+    await news.save();
+    res.json({message:"Success"})
+  });
+
+  app.delete("/formdelete/:id", async (req, res) => {
+    let id = await req.params.id;
+    console.log(id)
+    res.json({message:"Success"})
+  });
 
 
 app.get("/formget",async (req,res)=>{
