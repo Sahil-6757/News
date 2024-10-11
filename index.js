@@ -41,7 +41,14 @@ const newSchema = new mongoose.Schema({
 
   app.delete("/formdelete/:id", async (req, res) => {
     let id = await req.params.id;
-    console.log(id)
+    let data = await News.findById({ _id: id });
+
+    if (!data.$isEmpty()) {
+      await News.deleteOne({ _id: id });
+      res.json({ message: "Deleted" });
+    } else {
+      res.json({ message: "No data Found" });
+    }
     res.json({message:"Success"})
   });
 
