@@ -43,7 +43,7 @@ const newSchema = new mongoose.Schema({
     try {
       let id = await req.params.id;
       let data = await News.findById({ _id: id });
-  
+      
       if (!data.$isEmpty()) {
         await News.deleteOne({ _id: id });
         res.json({ message: "Deleted" });
