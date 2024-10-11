@@ -11,6 +11,7 @@ app.use(bodyparser.json());
 // Middleware ends
 
 
+
 async function main() {
     await mongoose.connect(
       "mongodb+srv://arbaz151033:Arbazkhan%406757@cluster.dapmmwg.mongodb.net/Newsuploader?retryWrites=true&w=majority&appName=clusternp"
@@ -22,6 +23,7 @@ const newSchema = new mongoose.Schema({
     name: { type: String, unique: false },
     description: { type: String, unique: false },
     imageurl: { type: String, unique: false },
+    date: { type: String, unique: false },
   
   });
 
@@ -32,6 +34,7 @@ app.post("/formpost", async (req, res) => {
   news.name = await req.body.title
   news.description = await req.body.description
   news.imageurl = await req.body.imageUrl
+  news.date = await req.body.date
   await news.save();
   res.json({message:"Success"})
 });
