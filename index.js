@@ -81,6 +81,10 @@ app.get("/formget",async (req,res)=>{
     res.json(result)
 })
 
+app.get("/indianNews", async (req, res) => {
+  let result = await indNews.find({});
+  res.json(result);
+});
 app.listen(8000, () => {
   console.log("server on http://localhost:8000");
 });
