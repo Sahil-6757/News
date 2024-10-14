@@ -74,7 +74,21 @@ const newSchema = new mongoose.Schema({
     }
    
   });
-
+app.delete("/indianNewsdelete/:id", async (req, res) => {
+  try {
+    let id = await req.params.id;
+    let data = await indNews.findById({ _id: id });
+    if (!data.$isEmpty()) {
+      await News.deleteOne({ _id: id });
+      res.json({ message: "Deleted" });
+    } else {
+      res.json({ message: "No data Found" });
+    }
+    res.json({ message: "Success" });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.get("/formget",async (req,res)=>{
     let result = await News.find({});
