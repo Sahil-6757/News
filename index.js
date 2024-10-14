@@ -27,10 +27,28 @@ const newSchema = new mongoose.Schema({
   
   });
 
+  const indiannewSchema = new mongoose.Schema({
+    name: { type: String, unique: false },
+    description: { type: String, unique: false },
+    imageurl: { type: String, unique: false },
+    date: { type: String, unique: false },
+  });
+
   let News = mongoose.model("newsUploader", newSchema);
+  let indNews = mongoose.model("indianNews", indiannewSchema);
 
   app.post("/formpost", async (req, res) => {
     let news = new News();
+    news.name = await req.body.title
+    news.description = await req.body.description
+    news.imageurl = await req.body.imageUrl
+    news.date = await req.body.date
+    await news.save();
+    res.json({message:"Success"})
+  });
+
+ app.post("/indianpost", async (req, res) => {
+    let news = new indNews();
     news.name = await req.body.title
     news.description = await req.body.description
     news.imageurl = await req.body.imageUrl
