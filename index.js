@@ -52,7 +52,7 @@ const newSchema = new mongoose.Schema({
     news.name = await req.body.title
     news.description = await req.body.description
     news.imageurl = await req.body.imageUrl
-    news.date = await req.body.date
+    news.date = await req.body.newsDate
     await news.save();
     res.json({message:"Success"})
   });
